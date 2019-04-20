@@ -1,4 +1,6 @@
-package com.isoft.ds.list;
+package com.isoft.ds.list.impl;
+
+import com.isoft.ds.list.List;
 
 /**
  * 顺序结构线性表
@@ -6,7 +8,7 @@ package com.isoft.ds.list;
  * @Author Jingjie
  * @Since 2019/4/20
  */
-public class ArrayList<E> {
+public class ArrayList<E> implements List<E> {
 
     private int size;
 
@@ -109,6 +111,17 @@ public class ArrayList<E> {
     public void delete(E e) {
         int index = indexOf(e);
         delete(index);
+    }
+
+    /**
+     * 倒置
+     */
+    public void reverse() {
+        for (int i = 0; i < size / 2; i++) {
+            Object temp = this.elementArray[i];
+            this.elementArray[i] = this.elementArray[size - 1 - i];
+            this.elementArray[size - 1 - i] = temp;
+        }
     }
 
     /**

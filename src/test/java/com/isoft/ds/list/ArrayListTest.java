@@ -1,8 +1,8 @@
 package com.isoft.ds.list;
 
+import com.isoft.ds.list.impl.ArrayList;
 import org.junit.Test;
 
-import java.util.List;
 
 /**
  * 顺序结构线性表测试
@@ -14,7 +14,7 @@ public class ArrayListTest {
 
     @Test
     public void test() {
-        ArrayList<Integer> arrayList = new ArrayList<>();
+        List<Integer> arrayList = new ArrayList<>();
         arrayList.add(11);
         arrayList.add(22);
         arrayList.add(33);
@@ -32,7 +32,7 @@ public class ArrayListTest {
         print(arrayList);
     }
 
-    private void print(ArrayList<Integer> arrayList) {
+    private void print(List<Integer> arrayList) {
         for (int i = 0; i < arrayList.size(); i++) {
             System.out.println(arrayList.get(i));
         }
@@ -43,14 +43,16 @@ public class ArrayListTest {
     public void test2() {
         long time1 = System.currentTimeMillis();
         ArrayList<Integer> arrayList = new ArrayList();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 100; i++) {
             arrayList.add(i);
         }
+        arrayList.reverse();
+        print(arrayList);
         long time2 = System.currentTimeMillis();
         System.out.println(time2 - time1);
 
-        List<Integer> list = new java.util.ArrayList<>();
-        for (int i = 0; i < 1000000; i++) {
+        java.util.List<Integer> list = new java.util.ArrayList<>();
+        for (int i = 0; i < 100; i++) {
             list.add(i);
         }
         System.out.println(System.currentTimeMillis() - time2);

@@ -1,4 +1,6 @@
-package com.isoft.ds.list;
+package com.isoft.ds.list.impl;
+
+import com.isoft.ds.list.List;
 
 import java.util.NoSuchElementException;
 
@@ -8,7 +10,7 @@ import java.util.NoSuchElementException;
  * @Author Jingjie
  * @Since 2019/4/20
  */
-public class LinkedList<E> {
+public class LinkedList<E> implements List<E> {
 
     // 链表长度
     private int size;
@@ -24,7 +26,8 @@ public class LinkedList<E> {
      * @param e 要添加的元素
      * @return 元素所在的位置
      */
-    public int add(E e) {
+    @Override
+    public void add(E e) {
         /*Node<E> headNode = first;
         Node<E> newNode = new Node<>(e, null);
         if (headNode == null) {
@@ -49,7 +52,6 @@ public class LinkedList<E> {
             tempLastNode.next = newNode;
         }
         size++;
-        return size - 1;
     }
 
     /**
@@ -58,7 +60,7 @@ public class LinkedList<E> {
      * @param e 要添加的元素
      * @return 元素所在的位置
      */
-    public int add(int index, E e) {
+    public void add(int index, E e) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException...");
         }
@@ -70,12 +72,10 @@ public class LinkedList<E> {
                 newNode.next = tempNode.next;
                 tempNode.next = newNode;
                 size++;
-                return index;
             }
             i++;
             tempNode = tempNode.next;
         }
-        return -1;
     }
 
     /**
@@ -84,12 +84,13 @@ public class LinkedList<E> {
      * @param e 要删除的元素
      * @return 元素所在的位置
      */
-    public int delete(E e) {
+    @Override
+    public void delete(E e) {
         int index = indexOf(e);
         if (index == -1) {
             throw new NoSuchElementException("NoSuchElementException...");
         }
-        return delete(index);
+        delete(index);
     }
 
     /**
@@ -98,9 +99,14 @@ public class LinkedList<E> {
      * @param index 元素位置
      * @return 元素所在的位置
      */
-    public int delete(int index) {
+    @Override
+    public void delete(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException...");
+        }
+        if (index == 0) {
+            first = first.next;
+            size--;
         }
         Node<E> tempNode = first;
         int i = 0;
@@ -108,12 +114,10 @@ public class LinkedList<E> {
             if (i == (index - 1)) {
                 tempNode.next = tempNode.next.next;
                 size--;
-                return index;
             }
             i++;
             tempNode = tempNode.next;
         }
-        return -1;
     }
 
     /**
@@ -122,6 +126,7 @@ public class LinkedList<E> {
      * @param e 元素
      * @return 元素所在的位置
      */
+    @Override
     public int indexOf(E e) {
         Node<E> tempNode = first;
         int i = 0;
@@ -141,6 +146,7 @@ public class LinkedList<E> {
      * @param index 元素位置
      * @return 元素
      */
+    @Override
     public E get(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException...");
@@ -162,8 +168,17 @@ public class LinkedList<E> {
      *
      * @return 链表长度
      */
+    @Override
     public int size() {
         return size;
+    }
+
+    /**
+     * TODO 倒置
+     */
+    @Override
+    public void reverse() {
+
     }
 
     /**
