@@ -97,10 +97,10 @@ public class ArrayList<E> implements List<E> {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException...");
         }
-        for (int i = index; i < size; i++) {
+        for (int i = index; i < size - 1; i++) {
             this.elementArray[i] = this.elementArray[i + 1];
         }
-        this.elementArray[size--] = null;
+        this.elementArray[--size] = null;
     }
 
     /**
@@ -122,6 +122,14 @@ public class ArrayList<E> implements List<E> {
             this.elementArray[i] = this.elementArray[size - 1 - i];
             this.elementArray[size - 1 - i] = temp;
         }
+    }
+
+    @Override
+    public void clear() {
+        for (Object element : elementArray) {
+            element = null;
+        }
+        size = 0;
     }
 
     /**

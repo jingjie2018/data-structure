@@ -64,4 +64,6 @@ public interface List<E> {
      * @return 线性表长度
      */
     int size();
+
+    void clear();
 }

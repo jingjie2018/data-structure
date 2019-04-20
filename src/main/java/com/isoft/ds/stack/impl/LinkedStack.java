@@ -23,4 +23,9 @@ public class LinkedStack<E> implements Stack<E> {
         linkedList.delete(lastIndex);
         return e;
     }
+
+    @Override
+    public int size() {
+        return linkedList.size();
+    }
 }

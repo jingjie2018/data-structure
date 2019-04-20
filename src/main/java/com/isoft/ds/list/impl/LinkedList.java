@@ -1,6 +1,8 @@
 package com.isoft.ds.list.impl;
 
 import com.isoft.ds.list.List;
+import com.isoft.ds.stack.Stack;
+import com.isoft.ds.stack.impl.ArrayStack;
 
 import java.util.NoSuchElementException;
 
@@ -174,11 +176,36 @@ public class LinkedList<E> implements List<E> {
     }
 
     /**
-     * TODO 倒置
+     * 倒置
      */
     @Override
     public void reverse() {
+        //栈实现
+        Stack<E> arrayStack = new ArrayStack<>(size);
+        for (int i = 0; i < size; i++) {
+            E e = get(i);
+            arrayStack.push(e);
+        }
 
+        clear();
+
+        int size = arrayStack.size();
+        for (int i = 0; i < size; i++) {
+            E e = arrayStack.pop();
+            add(e);
+        }
+    }
+
+    @Override
+    public void clear() {
+        for (Node<E> x = first; x != null; ) {
+            Node<E> next = x.next;
+            x.element = null;
+            x.next = null;
+            x = next;
+        }
+        first = last = null;
+        size = 0;
     }
 
     /**

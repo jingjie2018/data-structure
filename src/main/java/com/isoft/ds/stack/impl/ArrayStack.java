@@ -11,7 +11,15 @@ import com.isoft.ds.stack.Stack;
  */
 public class ArrayStack<E> implements Stack<E> {
 
-    private ArrayList<E> arrayList = new ArrayList<>();
+    private ArrayList<E> arrayList;
+
+    public ArrayStack() {
+        this.arrayList = new ArrayList<>();
+    }
+
+    public ArrayStack(int capacity) {
+        this.arrayList = new ArrayList<>(capacity);
+    }
 
     public void push(E e) {
         arrayList.add(e);
@@ -22,5 +30,10 @@ public class ArrayStack<E> implements Stack<E> {
         E lastElement = arrayList.get(lastIndex);
         arrayList.delete(lastIndex);
         return lastElement;
+    }
+
+    @Override
+    public int size() {
+        return arrayList.size();
     }
 }

@@ -63,4 +63,14 @@ public class LinkedListTest {
             System.out.println(linkedList.get(i));
         }
     }
+
+    @Test
+    public void testReverse() {
+        List<Integer> list = new LinkedList<>();
+        for (int i = 0; i < 100; i++) {
+            list.add(i);
+        }
+        list.reverse();
+        print(list);
+    }
 }

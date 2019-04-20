@@ -16,14 +16,14 @@ public class LinkedStackTest {
     public void test() {
         Stack<Integer> linkedStack = new LinkedStack<>();
 
-        linkedStack.push(11);
-        linkedStack.push(22);
-        linkedStack.push(33);
-        linkedStack.push(44);
-
-        System.out.println(linkedStack.pop());
-        System.out.println(linkedStack.pop());
-        System.out.println(linkedStack.pop());
-        System.out.println(linkedStack.pop());
+        long time1 = System.currentTimeMillis();
+        for (int i = 0; i < 1000; i++) {
+            linkedStack.push(i);
+        }
+        for (int i = 0; i < 1000; i++) {
+            System.out.println(linkedStack.pop());
+        }
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2 - time1);
     }
 }
