@@ -14,7 +14,9 @@ public class LinkedList<E> {
     private int size;
 
     // 链表头结点
-    private Node<E> head;
+    private Node<E> first;
+
+    private Node<E> last;
 
     /**
      * 添加元素
@@ -23,10 +25,10 @@ public class LinkedList<E> {
      * @return 元素所在的位置
      */
     public int add(E e) {
-        Node<E> headNode = head;
+        /*Node<E> headNode = first;
         Node<E> newNode = new Node<>(e, null);
         if (headNode == null) {
-            head = newNode;
+            first = newNode;
         } else {
             Node tempNode = headNode.next;
             if (tempNode == null) {
@@ -37,6 +39,14 @@ public class LinkedList<E> {
                 }
                 tempNode.next = newNode;
             }
+        }*/
+        final Node<E> tempLastNode = last;
+        final Node<E> newNode = new Node<>(e, null);
+        last = newNode;
+        if (tempLastNode == null) {
+            first = newNode;
+        } else {
+            tempLastNode.next = newNode;
         }
         size++;
         return size - 1;
@@ -52,7 +62,7 @@ public class LinkedList<E> {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException...");
         }
-        Node<E> tempNode = head;
+        Node<E> tempNode = first;
         Node<E> newNode = new Node<>(e, null);
         int i = 0;
         while (i < size && tempNode != null) {
@@ -92,7 +102,7 @@ public class LinkedList<E> {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException...");
         }
-        Node<E> tempNode = head;
+        Node<E> tempNode = first;
         int i = 0;
         while (i < size && tempNode != null) {
             if (i == (index - 1)) {
@@ -113,7 +123,7 @@ public class LinkedList<E> {
      * @return 元素所在的位置
      */
     public int indexOf(E e) {
-        Node<E> tempNode = head;
+        Node<E> tempNode = first;
         int i = 0;
         while (i < size && tempNode != null) {
             if (tempNode.element.equals(e)) {
@@ -135,7 +145,7 @@ public class LinkedList<E> {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException...");
         }
-        Node<E> tempNode = head;
+        Node<E> tempNode = first;
         int i = 0;
         while (i < size && tempNode != null) {
             if (i == index) {

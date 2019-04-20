@@ -2,6 +2,8 @@ package com.isoft.ds.list;
 
 import org.junit.Test;
 
+import java.util.List;
+
 /**
  * 顺序结构线性表测试
  *
@@ -34,5 +36,23 @@ public class ArrayListTest {
         for (int i = 0; i < arrayList.size(); i++) {
             System.out.println(arrayList.get(i));
         }
+    }
+
+
+    @Test
+    public void test2() {
+        long time1 = System.currentTimeMillis();
+        ArrayList<Integer> arrayList = new ArrayList();
+        for (int i = 0; i < 1000000; i++) {
+            arrayList.add(i);
+        }
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2 - time1);
+
+        List<Integer> list = new java.util.ArrayList<>();
+        for (int i = 0; i < 1000000; i++) {
+            list.add(i);
+        }
+        System.out.println(System.currentTimeMillis() - time2);
     }
 }

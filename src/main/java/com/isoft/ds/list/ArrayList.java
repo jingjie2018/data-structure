@@ -12,7 +12,7 @@ public class ArrayList<E> {
 
     private Object[] elementArray;
 
-    private static final int DEFAULT_CAPACITY = 4;
+    private static final int DEFAULT_CAPACITY = 10;
 
     public ArrayList() {
         this.elementArray = new Object[DEFAULT_CAPACITY];

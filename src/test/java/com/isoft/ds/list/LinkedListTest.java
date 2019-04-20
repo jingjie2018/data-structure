@@ -2,6 +2,9 @@ package com.isoft.ds.list;
 
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Random;
+
 /**
  * 链表测试
  *
@@ -30,9 +33,33 @@ public class LinkedListTest {
 
         //delete(e)
         Integer delEle = 22;
-        linkedList.delete(delEle);
+//        linkedList.delete(delEle);
 
         //get(index)
+        for (int i = 0; i < linkedList.size(); i++) {
+            System.out.println(linkedList.get(i));
+        }
+    }
+
+    @Test
+    public void test2() {
+        long time1 = System.currentTimeMillis();
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        for (int i = 0; i < 10000; i++) {
+            linkedList.add(i);
+        }
+//        print(linkedList);
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2 - time1);
+
+        List<Integer> list = new java.util.LinkedList<>();
+        for (int i = 0; i < 10000; i++) {
+            list.add(i);
+        }
+        System.out.println(System.currentTimeMillis() - time2);
+    }
+
+    private void print(LinkedList<Integer> linkedList) {
         for (int i = 0; i < linkedList.size(); i++) {
             System.out.println(linkedList.get(i));
         }
