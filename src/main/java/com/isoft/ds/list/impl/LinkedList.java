@@ -20,6 +20,7 @@ public class LinkedList<E> implements List<E> {
     // 链表头结点
     private Node<E> first;
 
+    // 链表尾结点
     private Node<E> last;
 
     /**
@@ -30,21 +31,6 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void add(E e) {
-        /*Node<E> headNode = first;
-        Node<E> newNode = new Node<>(e, null);
-        if (headNode == null) {
-            first = newNode;
-        } else {
-            Node tempNode = headNode.next;
-            if (tempNode == null) {
-                headNode.next = newNode;
-            } else {
-                while (tempNode.next != null) {
-                    tempNode = tempNode.next;
-                }
-                tempNode.next = newNode;
-            }
-        }*/
         final Node<E> tempLastNode = last;
         final Node<E> newNode = new Node<>(e, null);
         last = newNode;
@@ -68,16 +54,15 @@ public class LinkedList<E> implements List<E> {
         }
         Node<E> tempNode = first;
         Node<E> newNode = new Node<>(e, null);
-        int i = 0;
-        while (i < size && tempNode != null) {
-            if (i == (index - 1)) {
-                newNode.next = tempNode.next;
-                tempNode.next = newNode;
-                size++;
-            }
-            i++;
-            tempNode = tempNode.next;
+        if (index == 0) {
+            first = newNode;
+            newNode.next = tempNode;
+        } else {
+            Node<E> preNode = getNodeByIndex(index - 1);
+            newNode.next = preNode.next;
+            preNode.next = newNode;
         }
+        size++;
     }
 
     /**
@@ -106,20 +91,31 @@ public class LinkedList<E> implements List<E> {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException...");
         }
+        Node<E> deleteNode;
         if (index == 0) {
-            first = first.next;
-            size--;
+            deleteNode = first;
+            first = deleteNode.next;
+        } else {
+            Node<E> preNode = getNodeByIndex(index - 1);
+            deleteNode = preNode.next;
+            preNode.next = deleteNode.next;
         }
-        Node<E> tempNode = first;
-        int i = 0;
-        while (i < size && tempNode != null) {
-            if (i == (index - 1)) {
-                tempNode.next = tempNode.next.next;
-                size--;
-            }
-            i++;
-            tempNode = tempNode.next;
+        helpGc(deleteNode); // help gc
+        size--;
+    }
+
+    /**
+     * help Gc
+     *
+     * @param node 结点
+     */
+    private void helpGc(Node<E> node) {
+        if (node == null) {
+            return;
         }
+        node.element = null;
+        node.next = null;
+        node = null;
     }
 
     /**
@@ -130,14 +126,12 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public int indexOf(E e) {
-        Node<E> tempNode = first;
-        int i = 0;
-        while (i < size && tempNode != null) {
-            if (tempNode.element.equals(e)) {
-                return i;
+        int index = 0;
+        for (Node<E> tempNode = first; tempNode != null; tempNode = tempNode.next) {
+            if (e.equals(tempNode.element)) {
+                return index;
             }
-            i++;
-            tempNode = tempNode.next;
+            index++;
         }
         return -1;
     }
@@ -150,17 +144,29 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E get(int index) {
+        Node<E> node = getNodeByIndex(index);
+        if (node == null) {
+            return null;
+        }
+        return node.element;
+    }
+
+    /**
+     * 根据元素位置获取结点
+     *
+     * @param index 元素位置
+     * @return 结点
+     */
+    private Node<E> getNodeByIndex(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException...");
         }
-        Node<E> tempNode = first;
-        int i = 0;
-        while (i < size && tempNode != null) {
-            if (i == index) {
-                return tempNode.element;
+        int currentIndex = 0;
+        for (Node<E> tempNode = first; tempNode != null; tempNode = tempNode.next) {
+            if (currentIndex == index) {
+                return tempNode;
             }
-            i++;
-            tempNode = tempNode.next;
+            currentIndex++;
         }
         return null;
     }
@@ -196,6 +202,9 @@ public class LinkedList<E> implements List<E> {
         }
     }
 
+    /**
+     * 清空链表
+     */
     @Override
     public void clear() {
         for (Node<E> x = first; x != null; ) {
@@ -217,9 +226,6 @@ public class LinkedList<E> implements List<E> {
 
         E element;
         Node next;
-
-        public Node() {
-        }
 
         public Node(E element, Node next) {
             this.element = element;
