@@ -1,4 +1,4 @@
-package com.isoft.ds.sort;
+package com.isoft.ds.algorithm;
 
 import org.junit.Before;
 import org.junit.Test;
