@@ -6,8 +6,8 @@ import com.isoft.ds.stack.Stack;
 /**
  * 链栈
  *
- * @Author Jingjie
- * @Since 2019/4/20
+ * @author Jingjie
+ * @since 2019/4/20
  */
 public class LinkedStack<E> implements Stack<E> {
 
@@ -27,5 +27,10 @@ public class LinkedStack<E> implements Stack<E> {
     @Override
     public int size() {
         return linkedList.size();
+    }
+
+    @Override
+    public void clear() {
+        linkedList.clear();
     }
 }

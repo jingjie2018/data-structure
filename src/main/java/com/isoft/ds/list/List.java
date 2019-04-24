@@ -3,8 +3,8 @@ package com.isoft.ds.list;
 /**
  * 线性表
  *
- * @Author Jingjie
- * @Since 2019/4/20
+ * @author Jingjie
+ * @since 2019/4/20
  */
 public interface List<E> {
 

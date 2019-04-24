@@ -6,8 +6,8 @@ import com.isoft.ds.queue.Queue;
 /**
  * 顺序队列
  *
- * @Author Jingjie
- * @Since 2019/4/20
+ * @author Jingjie
+ * @since 2019/4/20
  */
 public class ArrayQueue<E> implements Queue<E> {
 
@@ -23,5 +23,15 @@ public class ArrayQueue<E> implements Queue<E> {
         E e = arrayList.get(0);
         arrayList.delete(0);
         return e;
+    }
+
+    @Override
+    public int size() {
+        return arrayList.size();
+    }
+
+    @Override
+    public void clear() {
+        arrayList.clear();
     }
 }

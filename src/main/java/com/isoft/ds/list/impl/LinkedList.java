@@ -9,8 +9,8 @@ import java.util.NoSuchElementException;
 /**
  * 单向链表
  *
- * @Author Jingjie
- * @Since 2019/4/20
+ * @author Jingjie
+ * @since 2019/4/20
  */
 public class LinkedList<E> implements List<E> {
 
@@ -222,7 +222,7 @@ public class LinkedList<E> implements List<E> {
      *
      * @param <E>
      */
-    private static class Node<E> {
+    private final static class Node<E> {
 
         E element;
         Node next;

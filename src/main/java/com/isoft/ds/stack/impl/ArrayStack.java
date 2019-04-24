@@ -6,8 +6,8 @@ import com.isoft.ds.stack.Stack;
 /**
  * 顺序栈
  *
- * @Author Jingjie
- * @Since 2019/4/20
+ * @author Jingjie
+ * @since 2019/4/20
  */
 public class ArrayStack<E> implements Stack<E> {
 
@@ -35,5 +35,10 @@ public class ArrayStack<E> implements Stack<E> {
     @Override
     public int size() {
         return arrayList.size();
+    }
+
+    @Override
+    public void clear() {
+        arrayList.clear();
     }
 }

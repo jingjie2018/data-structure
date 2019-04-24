@@ -8,8 +8,8 @@ import org.junit.Test;
 /**
  * 链表测试
  *
- * @Author Jingjie
- * @Since 2019/4/20
+ * @author Jingjie
+ * @since 2019/4/20
  */
 public class LinkedListTest {
 
@@ -34,6 +34,7 @@ public class LinkedListTest {
     public void testIndexOf() {
         // indexOf(e)
         System.out.println(linkedList.indexOf(44));
+        System.out.println(linkedList.indexOf(55));
     }
 
     @Test

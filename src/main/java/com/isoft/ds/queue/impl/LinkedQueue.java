@@ -6,8 +6,8 @@ import com.isoft.ds.queue.Queue;
 /**
  * 队列（链式）
  *
- * @Author Jingjie
- * @Since 2019/4/20
+ * @author Jingjie
+ * @since 2019/4/20
  */
 public class LinkedQueue<E> implements Queue<E> {
 
@@ -21,5 +21,15 @@ public class LinkedQueue<E> implements Queue<E> {
         E e = linkedList.get(0);
         linkedList.delete(0);
         return e;
+    }
+
+    @Override
+    public int size() {
+        return linkedList.size();
+    }
+
+    @Override
+    public void clear() {
+        linkedList.clear();
     }
 }
